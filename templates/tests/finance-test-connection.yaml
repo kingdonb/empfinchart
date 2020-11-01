@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "empfinchart.fullname" . }}-test-connection"
+  name: "{{ include "empfinchart.fullname" . }}-finance-test-connection"
   labels:
     {{- include "empfinchart.labels" . | nindent 4 }}
   annotations:
@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "empfinchart.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "empfinchart.fullname" . }}-finance:{{ .Values.finance.service.port }}']
   restartPolicy: Never

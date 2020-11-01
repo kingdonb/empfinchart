@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "empfinchart.fullname" . }}-finance
+  labels:
+    {{- include "empfinchart.finance.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.finance.service.type }}
+  ports:
+    - port: {{ .Values.finance.service.port }}
+      targetPort: 3000
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "empfinchart.finance.selectorLabels" . | nindent 4 }}

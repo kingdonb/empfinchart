@@ -2,13 +2,42 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
 
 image:
-  repository: nginx
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.19.3"
+
+pa:
+  replicaCount: 1
+  image:
+    repository: registry.kingdonb.dev/admin/personnel-actions
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "v2.4.01"
+hrpy:
+  replicaCount: 1
+  image:
+    repository: registry.kingdonb.dev/admin/hrpy-api
+    tag: "v1.7.03"
+person:
+  replicaCount: 1
+  image:
+    repository: registry.kingdonb.dev/admin/person-api
+    tag: "v1.2.03"
+finance:
+  replicaCount: 1
+  image:
+    repository: registry.kingdonb.dev/admin/finance-api
+    tag: "v3.2.04"
+faculty:
+  replicaCount: 1
+  image:
+    repository: registry.kingdonb.dev/admin/faculty-api
+    tag: "v1.9.5.1"
+facilities:
+  replicaCount: 1
+  image:
+    repository: registry.kingdonb.dev/admin/facilities-api
+    tag: "v1.2.1"
+
 
 imagePullSecrets: []
 nameOverride: ""
@@ -36,9 +65,30 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: ClusterIP
-  port: 80
+pa:
+  service:
+    type: ClusterIP
+    port: 80
+hrpy:
+  service:
+    type: ClusterIP
+    port: 80
+person:
+  service:
+    type: ClusterIP
+    port: 80
+finance:
+  service:
+    type: ClusterIP
+    port: 80
+faculty:
+  service:
+    type: ClusterIP
+    port: 80
+facilities:
+  service:
+    type: ClusterIP
+    port: 80
 
 ingress:
   enabled: false

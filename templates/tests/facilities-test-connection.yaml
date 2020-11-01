@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: "{{ include "empfinchart.fullname" . }}-facilities-test-connection"
   labels:
-    {{- include "empfinchart.labels" . | nindent 4 }}
+    {{- include "empfinchart.facilities.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test-success
 spec:

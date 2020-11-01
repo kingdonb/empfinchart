@@ -10,7 +10,7 @@ spec:
 {{- end }}
   selector:
     matchLabels:
-      {{- include "empfinchart.faculty.selectorLabels" . | nindent 6 }}
+      {{- include "empfinchart.faculty.matchLabels" . | nindent 6 }}
   template:
     metadata:
     {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
-        {{- include "empfinchart.faculty.selectorLabels" . | nindent 8 }}
+        {{- include "empfinchart.faculty.matchLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

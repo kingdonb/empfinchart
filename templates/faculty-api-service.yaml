@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "empfinchart.faculty.selectorLabels" . | nindent 4 }}
+    {{- include "empfinchart.faculty.matchLabels" . | nindent 4 }}

@@ -63,8 +63,8 @@ facilities:
 
 
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+nameOverride: "empfin"
+fullnameOverride: "empfin"
 
 serviceAccount:
   # Specifies whether a service account should be created

@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "empfinchart.fullname" . }}-web:{{ .Values.pa.service.port }}']
+      args: ['{{ include "empfinchart.fullname" . }}-web:{{ .Values.service.port }}']
   restartPolicy: Never

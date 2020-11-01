@@ -2,41 +2,64 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-
+pa:
+  name: web
 image:
   pullPolicy: IfNotPresent
+  repository: registry.kingdonb.dev/admin/personnel-actions
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v2.4.01"
+service:
+  type: ClusterIP
+  port: 80
 
-pa:
-  replicaCount: 1
-  image:
-    repository: registry.kingdonb.dev/admin/personnel-actions
-    # Overrides the image tag whose default is the chart appVersion.
-    tag: "v2.4.01"
+replicaCount: 1
+
 hrpy:
+  name: hrpy
   replicaCount: 1
   image:
     repository: registry.kingdonb.dev/admin/hrpy-api
     tag: "v1.7.03"
+  service:
+    type: ClusterIP
+    port: 80
 person:
+  name: person
   replicaCount: 1
   image:
     repository: registry.kingdonb.dev/admin/person-api
     tag: "v1.2.03"
+  service:
+    type: ClusterIP
+    port: 80
 finance:
+  name: finance
   replicaCount: 1
   image:
     repository: registry.kingdonb.dev/admin/finance-api
     tag: "v3.2.04"
+  service:
+    type: ClusterIP
+    port: 80
 faculty:
+  name: faculty
   replicaCount: 1
   image:
     repository: registry.kingdonb.dev/admin/faculty-api
     tag: "v1.9.5.1"
+  service:
+    type: ClusterIP
+    port: 80
 facilities:
+  name: facilities
   replicaCount: 1
   image:
     repository: registry.kingdonb.dev/admin/facilities-api
     tag: "v1.2.1"
+  service:
+    type: ClusterIP
+    port: 80
 
 
 imagePullSecrets: []
@@ -65,30 +88,6 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-pa:
-  service:
-    type: ClusterIP
-    port: 80
-hrpy:
-  service:
-    type: ClusterIP
-    port: 80
-person:
-  service:
-    type: ClusterIP
-    port: 80
-finance:
-  service:
-    type: ClusterIP
-    port: 80
-faculty:
-  service:
-    type: ClusterIP
-    port: 80
-facilities:
-  service:
-    type: ClusterIP
-    port: 80
 
 ingress:
   enabled: false

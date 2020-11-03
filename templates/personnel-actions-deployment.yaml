@@ -20,9 +20,6 @@ spec:
       labels:
         {{- include "empfinchart.pa.matchLabels" . | nindent 8 }}
     spec:
-      envFrom:
-      - secretRef:
-          name: {{ .Values.secretName }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -36,6 +33,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+          - secretRef:
+              name: {{ .Values.secretName }}
           ports:
             - name: http
               containerPort: 3000

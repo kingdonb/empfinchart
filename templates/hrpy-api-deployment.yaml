@@ -20,9 +20,6 @@ spec:
       labels:
         {{- include "empfinchart.hrpy.matchLabels" . | nindent 8 }}
     spec:
-      envFrom:
-      - secretRef:
-          name: {{ .Values.hrpy.secretName }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -36,6 +33,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.hrpy.image.repository }}:{{ .Values.hrpy.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+          - secretRef:
+              name: {{ .Values.hrpy.secretName }}
           ports:
             - name: http
               containerPort: 3000

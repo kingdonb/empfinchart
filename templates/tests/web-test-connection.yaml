@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "empfinchart.fullname" . }}-web-test-connection"
+  labels:
+    {{- include "empfinchart.pa.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "empfinchart.fullname" . }}-web:{{ .Values.service.port }}']
+  restartPolicy: Never

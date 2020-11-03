@@ -68,7 +68,8 @@ facilities:
   secretName: facilities-api
 
 
-imagePullSecrets: []
+imagePullSecrets:
+  - name: image-pull-secret
 nameOverride: "empfin"
 fullnameOverride: "personnel-actions"
 

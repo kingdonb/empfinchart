@@ -83,8 +83,8 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext: {}
-  # fsGroup: 2000
+podSecurityContext:
+  fsGroup: 1000
 
 securityContext:
   # capabilities:
@@ -94,7 +94,6 @@ securityContext:
   runAsNonRoot: true
   runAsUser: 999
   runAsGroup: 1000
-  fsGroup: 1000
 
 
 ingress:

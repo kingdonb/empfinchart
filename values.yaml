@@ -12,6 +12,7 @@ image:
 service:
   type: ClusterIP
   port: 80
+secretName: personnel-actions
 
 replicaCount: 1
 
@@ -24,6 +25,7 @@ hrpy:
   service:
     type: ClusterIP
     port: 80
+  secretName: hrpy-api
 person:
   name: person
   replicaCount: 1
@@ -33,6 +35,7 @@ person:
   service:
     type: ClusterIP
     port: 80
+  secretName: person-api
 finance:
   name: finance
   replicaCount: 1
@@ -42,6 +45,7 @@ finance:
   service:
     type: ClusterIP
     port: 80
+  secretName: finance-api
 faculty:
   name: faculty
   replicaCount: 1
@@ -51,6 +55,7 @@ faculty:
   service:
     type: ClusterIP
     port: 80
+  secretName: faculty-api
 facilities:
   name: facilities
   replicaCount: 1
@@ -60,6 +65,7 @@ facilities:
   service:
     type: ClusterIP
     port: 80
+  secretName: facilities-api
 
 
 imagePullSecrets: []

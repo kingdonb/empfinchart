@@ -20,6 +20,9 @@ spec:
       labels:
         {{- include "empfinchart.hrpy.matchLabels" . | nindent 8 }}
     spec:
+      envFrom:
+      - secretRef:
+          name: {{ include "empfinchart.hrpy.secretName" . }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}

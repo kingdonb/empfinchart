@@ -20,6 +20,9 @@ spec:
       labels:
         {{- include "empfinchart.person.matchLabels" . | nindent 8 }}
     spec:
+      envFrom:
+      - secretRef:
+          name: {{ include "empfinchart.person.secretName" . }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}

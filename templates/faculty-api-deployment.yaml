@@ -22,7 +22,7 @@ spec:
     spec:
       envFrom:
       - secretRef:
-          name: {{ include "empfinchart.faculty.secretName" . }}
+          name: {{ .Values.faculty.secretName }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}

@@ -41,13 +41,23 @@ spec:
               containerPort: 3000
               protocol: TCP
           livenessProbe:
+            failureThreshold: 3
             httpGet:
-              path: /
-              port: http
-          readinessProbe:
+              path: /ping
+              port: 3000
+              scheme: HTTP
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 4
+          startupProbe:
+            failureThreshold: 30
             httpGet:
-              path: /
-              port: http
+              path: /ping
+              port: 3000
+              scheme: HTTP
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 1
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

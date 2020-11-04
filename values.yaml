@@ -29,7 +29,7 @@ canary:
     enabled: false
     url: http://flagger-loadtester.test/
   helmtest:
-    enabled: false
+    enabled: true
     url: http://flagger-helmtester.kube-system/
 
 hrpy:

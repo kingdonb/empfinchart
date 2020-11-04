@@ -15,6 +15,22 @@ service:
 secretName: personnel-actions
 
 replicaCount: 1
+canary:
+  enabled: true
+  analysis:
+    interval: 15s
+    threshold: 10
+    maxWeight: 50
+    stepWeight: 5
+  thresholds:
+    successRate: 99
+    latency: 500
+  loadtest:
+    enabled: false
+    url: http://flagger-loadtester.test/
+  helmtest:
+    enabled: false
+    url: http://flagger-helmtester.kube-system/
 
 hrpy:
   name: hrpy

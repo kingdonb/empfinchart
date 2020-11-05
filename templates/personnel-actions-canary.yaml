@@ -32,7 +32,7 @@ spec:
     - name: request-duration
       threshold: {{ .Values.canary.thresholds.latency }}
       interval: 1m
-    webhooks:
+    webhooks: {{ if and (not .Values.canary.helmtest.enabled) (not .Values.canary.loadtest.enabled) }}{}{{ end }}
       {{- if .Values.canary.helmtest.enabled }}
       - name: "helm test"
         type: pre-rollout

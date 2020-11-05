@@ -19,6 +19,7 @@ spec:
     name: {{ template "empfinchart.fullname" . }}-web
   service:
     port: {{ .Values.service.port }}
+    targetPort: 3000
   analysis:
     interval: {{ .Values.canary.analysis.interval }}
     threshold: {{ .Values.canary.analysis.threshold }}

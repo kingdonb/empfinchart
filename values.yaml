@@ -109,15 +109,15 @@ podAnnotations: {}
 
 podSecurityContext:
   fsGroup: 1000
+  runAsNonRoot: true
+  runAsUser: 999
+  runAsGroup: 1000
 
-securityContext:
+securityContext: {}
   # capabilities:
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
-  runAsNonRoot: true
-  runAsUser: 999
-  runAsGroup: 1000
 
 
 ingress:

@@ -27,10 +27,17 @@ canary:
     latency: 500
   loadtest:
     enabled: false
-    url: http://flagger-loadtester.test/
+    url: http://flagger-loadtester.pa/
   helmtest:
     enabled: false
     url: http://flagger-helmtester.kube-system/
+  confirmRollout:
+    enabled: true
+    url: http://flagger-loadtester.pa/gate/approve
+  confirmPromotion:
+    enabled: true
+    confirmUrl: http://flagger-loadtester.pa/gate/approve
+    rollbackUrl: http://flagger-loadtester.pa/rollback/check
 
 hrpy:
   name: hrpy

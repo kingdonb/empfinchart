@@ -32,7 +32,12 @@ spec:
     - name: request-duration
       threshold: {{ .Values.canary.thresholds.latency }}
       interval: 1m
-    webhooks: {{ if and (not .Values.canary.helmtest.enabled) (not .Values.canary.loadtest.enabled) }}[]{{ end }}
+    webhooks: {{ if and (not .Values.canary.helmtest.enabled) (not .Values.canary.loadtest.enabled) (not .Values.canary.confirmRollout.enabled) (not .Values.canary.confirmPromotion.enabled) }}[]{{ end }}
+      {{- if .Values.canary.confirmRollout.enabled }}
+      - name: "start gate"
+        type: confirm-rollout
+        url: {{ .Values.canary.confirmRollout.url }}
+      {{- end }}
       {{- if .Values.canary.helmtest.enabled }}
       - name: "helm test"
         type: pre-rollout
@@ -48,5 +53,13 @@ spec:
         timeout: 5s
         metadata:
           cmd: "hey -z 1m -q 5 -c 2 http://{{ template "empfinchart.fullname" . }}.{{ .Release.Namespace }}:{{ .Values.service.port }}"
+      {{- end }}
+      {{- if .Values.canary.confirmPromotion.enabled }}
+      - name: "promotion gate"
+        type: confirm-promotion
+        url: {{ .Values.canary.confirmPromotion.confirmUrl }}
+      - name: "rollback gate"
+        type: rollback
+        url: {{ .Values.canary.confirmPromotion.rollbackUrl }}
       {{- end }}
 {{- end }}

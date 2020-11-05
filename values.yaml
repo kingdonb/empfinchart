@@ -117,15 +117,15 @@ ingress:
   enabled: true
   annotations:
     kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
   hosts:
-    - host: pa-project-dev.kingdonb.dev
+    - host: pa-project-dev.empfindev.nd.edu
       paths:
         - /
-  tls:
-   - secretName: pa-project-dev
-     hosts:
-       - pa-project-dev.kingdonb.dev
+#  tls:
+#   - secretName: pa-project-dev
+#     hosts:
+#       - pa-project-dev.kingdonb.dev
 
 resources:
   limits:

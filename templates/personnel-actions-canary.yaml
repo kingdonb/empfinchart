@@ -13,6 +13,10 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name:  {{ template "empfinchart.fullname" . }}-web
+  ingressRef:
+    apiVersion: networking.k8s.io/v1beta1
+    kind: Ingress
+    name: {{ template "empfinchart.fullname" . }}-web
   service:
     port: {{ .Values.service.port }}
   analysis:

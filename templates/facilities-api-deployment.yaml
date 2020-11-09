@@ -31,7 +31,7 @@ spec:
         - name: facilities-api
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.facilities.image.repository }}:{{ .Values.facilities.image.tag }}"
+          image: "{{ .Values.facilities.image.name }}:{{ .Values.facilities.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
           - secretRef:

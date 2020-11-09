@@ -31,7 +31,7 @@ spec:
         - name: person-api
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.person.image.repository }}:{{ .Values.person.image.tag }}"
+          image: "{{ .Values.person.image.name }}:{{ .Values.person.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
           - secretRef:

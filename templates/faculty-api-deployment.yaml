@@ -31,7 +31,7 @@ spec:
         - name: faculty-api
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.faculty.image.repository }}:{{ .Values.faculty.image.tag }}"
+          image: "{{ .Values.faculty.image.name }}:{{ .Values.faculty.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
           - secretRef:

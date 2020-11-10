@@ -8,6 +8,7 @@ spec:
 {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.person.replicaCount }}
 {{- end }}
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       {{- include "empfinchart.person.matchLabels" . | nindent 6 }}

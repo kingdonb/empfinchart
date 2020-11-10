@@ -8,6 +8,7 @@ spec:
 {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.faculty.replicaCount }}
 {{- end }}
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       {{- include "empfinchart.faculty.matchLabels" . | nindent 6 }}

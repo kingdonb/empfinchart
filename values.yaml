@@ -5,7 +5,7 @@
 pa:
   name: web
 image:
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   name: registry.kingdonb.dev/admin/personnel-actions
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v2.4.01"

@@ -111,6 +111,16 @@ component: {{ .Values.facilities.name | quote }}
 {{ include "empfinchart.common.matchLabels" . }}
 {{- end -}}
 
+{{- define "empfinchart.health.labels" -}}
+{{ include "empfinchart.health.matchLabels" . }}
+{{ include "empfinchart.common.metaLabels" . }}
+{{- end -}}
+
+{{- define "empfinchart.health.matchLabels" -}}
+component: {{ .Values.health.name | quote }}
+{{ include "empfinchart.common.matchLabels" . }}
+{{- end -}}
+
 {{/*
 Create the name of the service account to use
 */}}

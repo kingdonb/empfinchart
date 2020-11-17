@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := printf "%s-%s" (include "empfinchart.fullname" .) "web" -}}
+{{- $fullName := printf "%s-%s" (include "empfinchart.fullname" .) "health" -}}
 {{- $svcPort := .Values.service.port -}}
 {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1

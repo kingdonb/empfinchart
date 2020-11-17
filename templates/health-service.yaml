@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "empfinchart.fullname" . }}-facilities
+  name: {{ include "empfinchart.fullname" . }}-health
   labels:
-    {{- include "empfinchart.facilities.labels" . | nindent 4 }}
+    {{- include "empfinchart.health.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.facilities.service.type }}
+  type: {{ .Values.health.service.type }}
   ports:
-    - port: {{ .Values.facilities.service.port }}
+    - port: {{ .Values.health.service.port }}
       targetPort: 3000
       protocol: TCP
       name: http
   selector:
-    {{- include "empfinchart.facilities.matchLabels" . | nindent 4 }}
+    {{- include "empfinchart.health.matchLabels" . | nindent 4 }}

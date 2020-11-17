@@ -89,6 +89,16 @@ facilities:
     type: ClusterIP
     port: 80
   secretName: facilities-api
+health:
+  name: health
+  replicaCount: 1
+  image:
+    name: registry.kingdonb.dev/admin/health-check-only
+    tag: "v0.0.0"
+  service:
+    type: ClusterIP
+    port: 80
+  secretName: health
 
 
 imagePullSecrets:

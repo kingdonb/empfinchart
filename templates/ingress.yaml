@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := printf "%s-%s" (include "empfinchart.fullname" .) "health" -}}
+{{- $fullName := printf "%s-%s" (include "empfinchart.fullname" .) "web" -}}
 {{- $svcPort := .Values.service.port -}}
 {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1
@@ -12,7 +12,7 @@ kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "empfinchart.pa.labels" . | nindent 4 }}
+    {{- include "empfinchart.health.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

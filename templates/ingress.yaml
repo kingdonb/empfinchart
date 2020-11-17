@@ -36,7 +36,7 @@ spec:
           {{- range .paths }}
           - path: {{ . }}
             backend:
-              serviceName: {{ $fullName }}
+              serviceName: personnel-actions-health
               servicePort: {{ $svcPort }}
           {{- end }}
     {{- end }}

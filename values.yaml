@@ -5,8 +5,8 @@
 pa:
   name: web
 image:
-  pullPolicy: IfNotPresent
-  repository: registry.kingdonb.dev/admin/personnel-actions
+  pullPolicy: Always
+  name: registry.kingdonb.dev/admin/personnel-actions
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v2.4.01"
 service:
@@ -27,16 +27,23 @@ canary:
     latency: 500
   loadtest:
     enabled: false
-    url: http://flagger-loadtester.test/
+    url: http://flagger-loadtester.pa/
   helmtest:
     enabled: false
     url: http://flagger-helmtester.kube-system/
+  confirmRollout:
+    enabled: true
+    url: http://flagger-loadtester.pa/gate/approve
+  confirmPromotion:
+    enabled: true
+    confirmUrl: http://flagger-loadtester.pa/gate/approve
+    rollbackUrl: http://flagger-loadtester.pa/rollback/check
 
 hrpy:
   name: hrpy
   replicaCount: 1
   image:
-    repository: registry.kingdonb.dev/admin/hrpy-api
+    name: registry.kingdonb.dev/admin/hrpy-api
     tag: "v1.7.03"
   service:
     type: ClusterIP
@@ -46,7 +53,7 @@ person:
   name: person
   replicaCount: 1
   image:
-    repository: registry.kingdonb.dev/admin/person-api
+    name: registry.kingdonb.dev/admin/person-api
     tag: "v1.2.03"
   service:
     type: ClusterIP
@@ -56,7 +63,7 @@ finance:
   name: finance
   replicaCount: 1
   image:
-    repository: registry.kingdonb.dev/admin/finance-api
+    name: registry.kingdonb.dev/admin/finance-api
     tag: "v3.2.04"
   service:
     type: ClusterIP
@@ -66,7 +73,7 @@ faculty:
   name: faculty
   replicaCount: 1
   image:
-    repository: registry.kingdonb.dev/admin/faculty-api
+    name: registry.kingdonb.dev/admin/faculty-api
     tag: "v1.9.5.1"
   service:
     type: ClusterIP
@@ -76,7 +83,7 @@ facilities:
   name: facilities
   replicaCount: 1
   image:
-    repository: registry.kingdonb.dev/admin/facilities-api
+    name: registry.kingdonb.dev/admin/facilities-api
     tag: "v1.2.1"
   service:
     type: ClusterIP
@@ -102,15 +109,15 @@ podAnnotations: {}
 
 podSecurityContext:
   fsGroup: 1000
+  runAsNonRoot: true
+  runAsUser: 999
+  runAsGroup: 1000
 
-securityContext:
+securityContext: {}
   # capabilities:
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
-  runAsNonRoot: true
-  runAsUser: 999
-  runAsGroup: 1000
 
 
 ingress:

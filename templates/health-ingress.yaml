@@ -1,4 +1,4 @@
-{{- if .Values.ingress.enabled -}}
+{{- if .Values.health.ingress.enabled -}}
 {{- $fullName := printf "%s-%s" (include "empfinchart.fullname" .) "web" -}}
 {{- $svcPort := .Values.service.port -}}
 {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
@@ -12,15 +12,15 @@ kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "empfinchart.pa.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
+    {{- include "empfinchart.health.labels" . | nindent 4 }}
+  {{- with .Values.health.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  {{- if .Values.ingress.tls }}
+  {{- if .Values.health.ingress.tls }}
   tls:
-    {{- range .Values.ingress.tls }}
+    {{- range .Values.health.ingress.tls }}
     - hosts:
         {{- range .hosts }}
         - {{ . | quote }}
@@ -29,14 +29,14 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    {{- range .Values.ingress.hosts }}
+    {{- range .Values.health.ingress.hosts }}
     - host: {{ .host | quote }}
       http:
         paths:
           {{- range .paths }}
           - path: {{ . }}
             backend:
-              serviceName: {{ $fullName }}
+              serviceName: personnel-actions-health
               servicePort: {{ $svcPort }}
           {{- end }}
     {{- end }}

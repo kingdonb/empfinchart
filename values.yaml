@@ -91,7 +91,7 @@ facilities:
   secretName: facilities-api
 health:
   name: health
-  replicaCount: 1
+  replicaCount: 0
   image:
     name: registry.kingdonb.dev/admin/health-check-only
     tag: "v0.0.0"
